@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>参差多态</title>
+  
+  <subtitle>要精彩 也要踏实</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://luspock.com/"/>
+  <updated>2018-11-30T20:25:02.457Z</updated>
+  <id>https://luspock.com/</id>
+  
+  <author>
+    <name>Luspock</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>树莓派-Archlinux-Wifi-ap</title>
+    <link href="https://luspock.com/2017/10/29/%E6%A0%91%E8%8E%93%E6%B4%BE-Archlinux-Wifi-ap/"/>
+    <id>https://luspock.com/2017/10/29/树莓派-Archlinux-Wifi-ap/</id>
+    <published>2017-10-29T12:31:48.000Z</published>
+    <updated>2018-11-30T20:25:02.457Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在树莓派安装好Archlinux系统并进行简要设置之后，我又将其配置成了一个无线ap，以给手机电脑上网所用。经过两个月的使用，发现树莓派工作还算稳定，由此总结整理一下折腾的过程以方便他人和自己。</p><a id="more"></a><h2 id="设置hostapd"><a href="#设置hostapd" class="headerlink" title="设置hostapd"></a>设置hostapd</h2><p>安装hostapd:</p><blockquote><p>sudo pacman -S hostapd</p></blockquote><p>复制基本配置文件到/etc/hostapd/</p><blockquote><p>cp /usr/share/doc/hostapd/hostapd.conf /etc/hostapd/</p></blockquote><p>修改hostapd文件:</p><pre><code>interface=wlan0logger_stdout=-1logger_stdout_level=2ssid=Excited@pihw_mode=gchannel=13max_num_sta=5macaddr_acl=0#auth_algs=3auth_algs=1#ignore_broadcast_ssid=0wpa=2wpa_passphrase=YourPasswordwpa_key_mgmt=WPA-PSK WPA-EAPwpa_pairwise=TKIPrsn_pairwise=CCMP</code></pre><p>开启hostapd服务</p><blockquote><p>sudo systemctl start hostapd</p><p>sudo systemctl enable hostapd</p></blockquote><h2 id="为无线网卡分配IP地址"><a href="#为无线网卡分配IP地址" class="headerlink" title="为无线网卡分配IP地址"></a>为无线网卡分配IP地址</h2><blockquote><p>ifconfig wlan 192.168.0.1/24</p></blockquote><h2 id="设置wlan0"><a href="#设置wlan0" class="headerlink" title="设置wlan0"></a>设置wlan0</h2><p>建立<code>/etc/systemd/system/network-wireless@.service</code></p><pre><code>[Unit]Description=Wireless network connectivity (%i)Wants=network.targetBefore=network.targetBindsTo=sys-subsystem-net-devices-%i.deviceAfter=sys-subsystem-net-devices-%i.device[Service]Type=oneshotRemainAfterExit=yesEnvironmentFile=/etc/conf.d/network-wireless@%iExecStart=/usr/bin/ip link set dev %i upExecStart=/usr/bin/ip addr add ${address}/${netmask} broadcast ${broadcast} dev %iExecStop=/usr/bin/ip addr flush dev %iExecStop=/usr/bin/ip link set dev %i down[Install]WantedBy=multi-user.target</code></pre><p>建立编辑<code>/etc/conf.d/network-wireless@wlan0</code>:</p><pre><code>address=192.168.1.1netmask=24broadcast=192.168.1.255</code></pre><p>启动wlan0服务</p><blockquote><p>sudo systemctl enable <a href="mailto:network-wireless@wlan0.service" target="_blank" rel="noopener">network-wireless@wlan0.service</a></p></blockquote><blockquote><p>sudo systemctl start <a href="mailto:network-wireless@wlan0.service" target="_blank" rel="noopener">network-wireless@wlan0.service</a></p></blockquote><h2 id="设置dnsmasq"><a href="#设置dnsmasq" class="headerlink" title="设置dnsmasq"></a>设置dnsmasq</h2><p>安装dnsmasq</p><blockquote><p>sudo pacman -S dnsmasq</p></blockquote><p>编辑<code>/etc/dnsmasq.conf</code></p><pre><code>interface=wlan0dhcp-range=192.168.1.2,192.168.1.10,255.255.255.0,12h</code></pre><p>后来发现以上设置还不够，dnsmasq服务不能开机启动<br><img src="/2017/10/29/树莓派-Archlinux-Wifi-ap/dnsmasq_log2.JPG" title="dnsmasq日志"><br>检查日志发现dnsmasq服务在启动的时候找不到<code>/etc/resolv.conf</code>文件。查找资料发现，默认情况下dnsmasq读取<code>/etc/resolv.conf</code>，指定从哪里获取上游DNS Server。<br>解决办法：建立一个<code>/etc/resolv.dnsmasq</code>文件，内容如下</p><pre><code>nameserver 127.0.0.1# Tsinghua nameserversnameserver 166.111.8.28nameserver 166.111.8.29# Google nameserversnameserver 8.8.8.8nameserver 8.8.4.4</code></pre><p>同时修改<code>/etc/dnsmasq.conf</code>文件<br>将<code>resolv-file=/etc/resolv.conf</code>改为<code>resolv-file=/etc/resolv.dnsmasq</code></p><p>启动dnsmasq服务</p><blockquote><p>sudo systemctl enable dnsmasq</p></blockquote><blockquote><p>sudo systemctl start dnsmasq</p></blockquote><h2 id="设置端口转发"><a href="#设置端口转发" class="headerlink" title="设置端口转发"></a>设置端口转发</h2><p>编辑/etc/sysctl.d/30-ipforward.conf</p><pre><code>net.ipv4.ip_forward=1net.ipv6.conf.default.forwarding=1net.ipv6.conf.all.forwarding=1</code></pre><p>设置 iptables</p><blockquote><p>sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE</p></blockquote><blockquote><p>sudo iptables -A FORWARD -m conntrack –ctstate RELATED,ESTABLISHED -j ACCEPT</p></blockquote><blockquote><p>sudo iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT</p></blockquote><blockquote><p>sudo sh -c “iptables-save &gt; /etc/iptables/iptables.rules”</p></blockquote><p>启动iptables</p><blockquote><p>sudo systemctl enable iptables</p></blockquote><blockquote><p>sudo systemctl start iptables</p></blockquote><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol><li><a href="http://blog.carlcarl.me/1399/raspberry_pi_archlinux_wifi_ap/" target="_blank" rel="noopener">Raspberry-pi Archlinux wifi ap</a></li><li><a href="http://www.cnblogs.com/asnjudy/p/4687193.html" target="_blank" rel="noopener">ubuntu14.04 dnsmasq搭建本地名字服务器</a></li><li><a href="https://wiki.archlinux.org/index.php/Dnsmasq" target="_blank" rel="noopener">dnsmasq</a></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;在树莓派安装好Archlinux系统并进行简要设置之后，我又将其配置成了一个无线ap，以给手机电脑上网所用。经过两个月的使用，发现树莓派工作还算稳定，由此总结整理一下折腾的过程以方便他人和自己。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="硬件" scheme="https://luspock.com/categories/%E7%A1%AC%E4%BB%B6/"/>
+    
+      <category term="树莓派" scheme="https://luspock.com/categories/%E7%A1%AC%E4%BB%B6/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
+    
+    
+      <category term="树莓派" scheme="https://luspock.com/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
+    
+      <category term="折腾" scheme="https://luspock.com/tags/%E6%8A%98%E8%85%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>树莓派3挂载U盘安装Archlinux</title>
+    <link href="https://luspock.com/2017/10/28/%E6%A0%91%E8%8E%93%E6%B4%BE3%E6%8C%82%E8%BD%BDU%E7%9B%98%E5%AE%89%E8%A3%85Archlinux/"/>
+    <id>https://luspock.com/2017/10/28/树莓派3挂载U盘安装Archlinux/</id>
+    <published>2017-10-28T22:58:41.000Z</published>
+    <updated>2018-11-30T20:25:16.857Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>暑假的时候入手了一个树莓派3，配了一个32G的SD 卡。由于正事比较多，在安装系统上拖了很长时间。目前树莓派上面的系统已经能够正常运行，于是在这里整理记录一下安装过程，以对自己和其他人有所帮助。</p><h2 id="选择Archlinux-Arm"><a href="#选择Archlinux-Arm" class="headerlink" title="选择Archlinux Arm"></a>选择Archlinux Arm</h2><p>自己之前就折腾过一段时间Archlinux，当时在笔记本上安装了Win10和Archlinux双系统。因为平时主要使用Windows，对Arch刚需不大，安装完成之后就很少进入Arch。后面由于SSD空间不够就把Archlinux删去了。入手的树莓派刚好可以让我重新接触这个轻量级，简洁的系统。<br><a id="more"></a></p><h2 id="安装准备"><a href="#安装准备" class="headerlink" title="安装准备"></a>安装准备</h2><ul><li>树莓派 </li><li>32G大小SD卡（由于只在上面安装Boot,其实30M+就可以了）</li><li>USB读卡器</li><li>Archlinux ARM安装完成之后会占用600-800M空间，再安装一点软件就要1.5G左右，因此最好准备4G以上的U盘</li></ul><img src="/2017/10/28/树莓派3挂载U盘安装Archlinux/space_df_h.JPG"><ul><li>路由器</li></ul><h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><p>之前Raspberry Pi官网上是有Archlinux Arm的镜像文件的，但现在树莓派官方取消支持了。Archlinux Arm还是给出安装的具体过程。</p><p>但是步骤操作起来比较麻烦，我采用的是镜像文件安装的方法，ta人维护的镜像文件可以见这里<a href="https://sourceforge.net/projects/archlinux-rpi2/" target="_blank" rel="noopener">image</a>，请谨慎使用。</p><ol><li><p>用Win32DiskImager 将镜像写入SD 和U盘（先格式化成FAT格式）。</p></li><li><p>将SD卡和U盘同时插到树莓派上，开机。将树莓派和电脑接到同一个路由器下，方便获得IP地址。用IP扫描器或者登陆路由器管理界面查看树莓派的IP地址（alarmpi）。ssh登陆树莓派，用户名alarm，密码alarm。su切换到root，密码root。</p></li><li><p>lsblk -l 查看U盘编号，我这里的情况是sda</p></li><li><p>由于写入镜像的时候，系统只占用一部分空间，因此需要扩展分区。</p><p><code>fdisk /dev/sda</code></p><p>按<code>p</code>显示分区信息，记住/sda2开始的位置</p><p>按<code>d</code>删掉第二个分区</p><p>按<code>n</code>然后<code>p</code>新建主分区，正常情况下新分区开始的位置是刚才记住的/sda2开始位置，按两次<code>enter</code>完成分区创建</p><p>按<code>p</code>确认第二个分区使用了剩下的所有空间</p><p>按<code>w</code>将新的分区信息保存，如果提示是否覆盖xxx, 选择no!否则会丢失sda2上的image数据。</p></li><li><p>修改SD卡的/boot中cmdline.txt</p><p><code>root=/dev/mmcblk0p2</code> 改为 <code>root=/dev/sda2</code></p></li><li><p><code>reboot</code>重启过后正常情况下进入的是U盘里面的系统，用户名alarm,密码alarm。su切换到root，密码root。</p></li><li><p><code>df -h</code>查看挂载信息，重新调整大小后，发现sda2大小依然没有变化</p><p><code>sudo resize2fs /dev/sda2</code> 更新系统，如果可能还需reboot。</p></li></ol><h2 id="安装后配置"><a href="#安装后配置" class="headerlink" title="安装后配置"></a>安装后配置</h2><h3 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h3><p><code>su</code>切换到root，<code>passwd</code>更新root密码</p><p><code>useradd -m -g wheel -s /bin/bash username</code></p><p><code>passwd</code>设置新用户密码</p><p>重新用新的用户登陆后再切换到root</p><p><code>userdel -r alarm</code>删除默认的alarm用户</p><h3 id="更改源"><a href="#更改源" class="headerlink" title="更改源"></a>更改源</h3><p><code>nano /etc/pacman.d/mirrorlist</code></p><p>添加清华tuna源<code>Server = http://mirrors.tuna.tsinghua.edu.cn/archlinuxarm/$arch/$repo</code></p><p>添加USTC源<code>Server = http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch</code></p><p>###更新系统</p><p><code>pacman-key init</code></p><p><code>pacman -Syu</code>更新系统（时间较长）</p><p>如果提示<code>/boot/overlays/audioinjector-addons.dtbo exists in filesystem</code>，<code>rm</code>相应文件，然后再次<code>pacman -Syu</code>即可</p><h3 id="安装sudo"><a href="#安装sudo" class="headerlink" title="安装sudo"></a>安装sudo</h3><p><code>pacman -S sudo</code></p><p>root身份运行<code>visudo</code>，将<code>%wheel ALL=(ALL) ALL</code>前面的#注释去掉</p><h3 id="修改ssh"><a href="#修改ssh" class="headerlink" title="修改ssh"></a>修改ssh</h3><p><code>nano /etc/ssh/sshd_config</code></p><p>修改port端口<code>Port xxxx</code></p><p>禁止root登陆<code>PermitRootLogin no</code></p><p><code>systemctl reload sshd</code></p><p>先不要断开目前的连接，再开一个新的连接，用更新过后的配置测试通过再断开当前连接为好。</p><h3 id="安装软件"><a href="#安装软件" class="headerlink" title="安装软件"></a>安装软件</h3><p><code>sudo pacman -S vim git tmux base-devel screenfetch</code></p><p><code>sudo pacman -S python3 python-pip</code></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><img src="/2017/10/28/树莓派3挂载U盘安装Archlinux/screenfetch.JPG"><p>介绍了在树莓派上挂载U盘安装archlinux过程以及简要配置，之后会说明如何将树莓派配置成一个wifi热点。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;暑假的时候入手了一个树莓派3，配了一个32G的SD 卡。由于正事比较多，在安装系统上拖了很长时间。目前树莓派上面的系统已经能够正常运行，于是在这里整理记录一下安装过程，以对自己和其他人有所帮助。&lt;/p&gt;
+&lt;h2 id=&quot;选择Archlinux-Arm&quot;&gt;&lt;a href=&quot;#选择Archlinux-Arm&quot; class=&quot;headerlink&quot; title=&quot;选择Archlinux Arm&quot;&gt;&lt;/a&gt;选择Archlinux Arm&lt;/h2&gt;&lt;p&gt;自己之前就折腾过一段时间Archlinux，当时在笔记本上安装了Win10和Archlinux双系统。因为平时主要使用Windows，对Arch刚需不大，安装完成之后就很少进入Arch。后面由于SSD空间不够就把Archlinux删去了。入手的树莓派刚好可以让我重新接触这个轻量级，简洁的系统。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="硬件" scheme="https://luspock.com/categories/%E7%A1%AC%E4%BB%B6/"/>
+    
+      <category term="树莓派" scheme="https://luspock.com/categories/%E7%A1%AC%E4%BB%B6/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
+    
+    
+      <category term="树莓派" scheme="https://luspock.com/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
+    
+      <category term="折腾" scheme="https://luspock.com/tags/%E6%8A%98%E8%85%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>第一篇文章</title>
+    <link href="https://luspock.com/2017/07/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
+    <id>https://luspock.com/2017/07/30/第一篇文章/</id>
+    <published>2017-07-30T16:57:41.000Z</published>
+    <updated>2018-11-30T20:38:20.294Z</updated>
+    
+    <content type="html"><![CDATA[<p>经过一周的折腾，这个计划已久的博客终于上线啦。目前是一个初步的版本，之后会接着优化。我会在这里记录生活、学习的点点滴滴，帮助回忆总结，同时提高输出能力。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;经过一周的折腾，这个计划已久的博客终于上线啦。目前是一个初步的版本，之后会接着优化。我会在这里记录生活、学习的点点滴滴，帮助回忆总结，同时提高输出能力。&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="日常" scheme="https://luspock.com/categories/%E6%97%A5%E5%B8%B8/"/>
+    
+    
+  </entry>
+  
+</feed>
