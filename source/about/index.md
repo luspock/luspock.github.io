@@ -28,4 +28,4 @@ type: "about"
 - 2017年8月20日，将文章路由从数字改成英文标题
 - 2017年9月 9日，增加markdown
 - 2017年9月10日，增加Blueprint
-- 2018年11月29日， 迁移到Github Pages, 采用Hexo
+- 2018年11月29日， 迁移到Github Pages, 采用Hexo，添加Disqus评论系统
