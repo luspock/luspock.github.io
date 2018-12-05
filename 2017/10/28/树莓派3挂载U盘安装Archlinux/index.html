@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="树莓派,折腾,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="参差多态" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="前言暑假的时候入手了一个树莓派3，配了一个32G的SD 卡。由于正事比较多，在安装系统上拖了很长时间。目前树莓派上面的系统已经能够正常运行，于是在这里整理记录一下安装过程，以对自己和其他人有所帮助。 选择Archlinux Arm自己之前就折腾过一段时间Archlinux，当时在笔记本上安装了Win10和Archlinux双系统。因为平时主要使用Windows，对Arch刚需不大，安装完成之后就很">
+<meta name="keywords" content="树莓派,折腾">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树莓派3挂载U盘安装Archlinux">
+<meta property="og:url" content="https://luspock.com/2017/10/28/树莓派3挂载U盘安装Archlinux/index.html">
+<meta property="og:site_name" content="参差多态">
+<meta property="og:description" content="前言暑假的时候入手了一个树莓派3，配了一个32G的SD 卡。由于正事比较多，在安装系统上拖了很长时间。目前树莓派上面的系统已经能够正常运行，于是在这里整理记录一下安装过程，以对自己和其他人有所帮助。 选择Archlinux Arm自己之前就折腾过一段时间Archlinux，当时在笔记本上安装了Win10和Archlinux双系统。因为平时主要使用Windows，对Arch刚需不大，安装完成之后就很">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://luspock.com/2017/10/28/树莓派3挂载U盘安装Archlinux/space_df_h.JPG">
+<meta property="og:image" content="https://luspock.com/2017/10/28/树莓派3挂载U盘安装Archlinux/screenfetch.JPG">
+<meta property="og:updated_time" content="2018-12-03T22:47:29.200Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="树莓派3挂载U盘安装Archlinux">
+<meta name="twitter:description" content="前言暑假的时候入手了一个树莓派3，配了一个32G的SD 卡。由于正事比较多，在安装系统上拖了很长时间。目前树莓派上面的系统已经能够正常运行，于是在这里整理记录一下安装过程，以对自己和其他人有所帮助。 选择Archlinux Arm自己之前就折腾过一段时间Archlinux，当时在笔记本上安装了Win10和Archlinux双系统。因为平时主要使用Windows，对Arch刚需不大，安装完成之后就很">
+<meta name="twitter:image" content="https://luspock.com/2017/10/28/树莓派3挂载U盘安装Archlinux/space_df_h.JPG">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://luspock.com/2017/10/28/树莓派3挂载U盘安装Archlinux/">
+
+
+
+
+
+  <title>树莓派3挂载U盘安装Archlinux | 参差多态</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-104674504-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">参差多态</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">要精彩 也要踏实</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://luspock.com/2017/10/28/树莓派3挂载U盘安装Archlinux/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Luspock">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="参差多态">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">树莓派3挂载U盘安装Archlinux</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-28T15:58:41-07:00">
+                2017-10-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/硬件/" itemprop="url" rel="index">
+                    <span itemprop="name">硬件</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/硬件/树莓派/" itemprop="url" rel="index">
+                    <span itemprop="name">树莓派</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/28/树莓派3挂载U盘安装Archlinux/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/10/28/树莓派3挂载U盘安装Archlinux/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  988 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>暑假的时候入手了一个树莓派3，配了一个32G的SD 卡。由于正事比较多，在安装系统上拖了很长时间。目前树莓派上面的系统已经能够正常运行，于是在这里整理记录一下安装过程，以对自己和其他人有所帮助。</p>
+<h2 id="选择Archlinux-Arm"><a href="#选择Archlinux-Arm" class="headerlink" title="选择Archlinux Arm"></a>选择Archlinux Arm</h2><p>自己之前就折腾过一段时间Archlinux，当时在笔记本上安装了Win10和Archlinux双系统。因为平时主要使用Windows，对Arch刚需不大，安装完成之后就很少进入Arch。后面由于SSD空间不够就把Archlinux删去了。入手的树莓派刚好可以让我重新接触这个轻量级，简洁的系统。<br><a id="more"></a></p>
+<h2 id="安装准备"><a href="#安装准备" class="headerlink" title="安装准备"></a>安装准备</h2><ul>
+<li>树莓派 </li>
+<li>32G大小SD卡（由于只在上面安装Boot,其实30M+就可以了）</li>
+<li>USB读卡器</li>
+<li>Archlinux ARM安装完成之后会占用600-800M空间，再安装一点软件就要1.5G左右，因此最好准备4G以上的U盘</li>
+</ul>
+<img src="/2017/10/28/树莓派3挂载U盘安装Archlinux/space_df_h.JPG">
+<ul>
+<li>路由器</li>
+</ul>
+<h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><p>之前Raspberry Pi官网上是有Archlinux Arm的镜像文件的，但现在树莓派官方取消支持了。Archlinux Arm还是给出安装的具体过程。</p>
+<p>但是步骤操作起来比较麻烦，我采用的是镜像文件安装的方法，ta人维护的镜像文件可以见这里<a href="https://sourceforge.net/projects/archlinux-rpi2/" target="_blank" rel="noopener">image</a>，请谨慎使用。</p>
+<ol>
+<li><p>用Win32DiskImager 将镜像写入SD 和U盘（先格式化成FAT格式）。</p>
+</li>
+<li><p>将SD卡和U盘同时插到树莓派上，开机。将树莓派和电脑接到同一个路由器下，方便获得IP地址。用IP扫描器或者登陆路由器管理界面查看树莓派的IP地址（alarmpi）。ssh登陆树莓派，用户名alarm，密码alarm。su切换到root，密码root。</p>
+</li>
+<li><p>lsblk -l 查看U盘编号，我这里的情况是sda</p>
+</li>
+<li><p>由于写入镜像的时候，系统只占用一部分空间，因此需要扩展分区。</p>
+<p><code>fdisk /dev/sda</code></p>
+<p>按<code>p</code>显示分区信息，记住/sda2开始的位置</p>
+<p>按<code>d</code>删掉第二个分区</p>
+<p>按<code>n</code>然后<code>p</code>新建主分区，正常情况下新分区开始的位置是刚才记住的/sda2开始位置，按两次<code>enter</code>完成分区创建</p>
+<p>按<code>p</code>确认第二个分区使用了剩下的所有空间</p>
+<p>按<code>w</code>将新的分区信息保存，如果提示是否覆盖xxx, 选择no!否则会丢失sda2上的image数据。</p>
+</li>
+<li><p>修改SD卡的/boot中cmdline.txt</p>
+<p><code>root=/dev/mmcblk0p2</code> 改为 <code>root=/dev/sda2</code></p>
+</li>
+<li><p><code>reboot</code>重启过后正常情况下进入的是U盘里面的系统，用户名alarm,密码alarm。su切换到root，密码root。</p>
+</li>
+<li><p><code>df -h</code>查看挂载信息，重新调整大小后，发现sda2大小依然没有变化</p>
+<p><code>sudo resize2fs /dev/sda2</code> 更新系统，如果可能还需reboot。</p>
+</li>
+</ol>
+<h2 id="安装后配置"><a href="#安装后配置" class="headerlink" title="安装后配置"></a>安装后配置</h2><h3 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h3><p><code>su</code>切换到root，<code>passwd</code>更新root密码</p>
+<p><code>useradd -m -g wheel -s /bin/bash username</code></p>
+<p><code>passwd</code>设置新用户密码</p>
+<p>重新用新的用户登陆后再切换到root</p>
+<p><code>userdel -r alarm</code>删除默认的alarm用户</p>
+<h3 id="更改源"><a href="#更改源" class="headerlink" title="更改源"></a>更改源</h3><p><code>nano /etc/pacman.d/mirrorlist</code></p>
+<p>添加清华tuna源<code>Server = http://mirrors.tuna.tsinghua.edu.cn/archlinuxarm/$arch/$repo</code></p>
+<p>添加USTC源<code>Server = http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch</code></p>
+<p>###更新系统</p>
+<p><code>pacman-key init</code></p>
+<p><code>pacman -Syu</code>更新系统（时间较长）</p>
+<p>如果提示<code>/boot/overlays/audioinjector-addons.dtbo exists in filesystem</code>，<code>rm</code>相应文件，然后再次<code>pacman -Syu</code>即可</p>
+<h3 id="安装sudo"><a href="#安装sudo" class="headerlink" title="安装sudo"></a>安装sudo</h3><p><code>pacman -S sudo</code></p>
+<p>root身份运行<code>visudo</code>，将<code>%wheel ALL=(ALL) ALL</code>前面的#注释去掉</p>
+<h3 id="修改ssh"><a href="#修改ssh" class="headerlink" title="修改ssh"></a>修改ssh</h3><p><code>nano /etc/ssh/sshd_config</code></p>
+<p>修改port端口<code>Port xxxx</code></p>
+<p>禁止root登陆<code>PermitRootLogin no</code></p>
+<p><code>systemctl reload sshd</code></p>
+<p>先不要断开目前的连接，再开一个新的连接，用更新过后的配置测试通过再断开当前连接为好。</p>
+<h3 id="安装软件"><a href="#安装软件" class="headerlink" title="安装软件"></a>安装软件</h3><p><code>sudo pacman -S vim git tmux base-devel screenfetch</code></p>
+<p><code>sudo pacman -S python3 python-pip</code></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><img src="/2017/10/28/树莓派3挂载U盘安装Archlinux/screenfetch.JPG">
+<p>介绍了在树莓派上挂载U盘安装archlinux过程以及简要配置，之后会说明如何将树莓派配置成一个wifi热点。</p>
+
+      
+    </div>
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束------</div>
+    
+</div>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Luspock
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://luspock.com/2017/10/28/树莓派3挂载U盘安装Archlinux/" title="树莓派3挂载U盘安装Archlinux">https://luspock.com/2017/10/28/树莓派3挂载U盘安装Archlinux/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/树莓派/" rel="tag"><i class="fa fa-tag"></i> 树莓派</a>
+          
+            <a href="/tags/折腾/" rel="tag"><i class="fa fa-tag"></i> 折腾</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/30/第一篇文章/" rel="next" title="第一篇文章">
+                <i class="fa fa-chevron-left"></i> 第一篇文章
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/29/树莓派-Archlinux-Wifi-ap/" rel="prev" title="树莓派-Archlinux-Wifi-ap">
+                树莓派-Archlinux-Wifi-ap <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Luspock">
+            
+              <p class="site-author-name" itemprop="name">Luspock</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/luspock" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择Archlinux-Arm"><span class="nav-number">2.</span> <span class="nav-text">选择Archlinux Arm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装准备"><span class="nav-number">3.</span> <span class="nav-text">安装准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装过程"><span class="nav-number">4.</span> <span class="nav-text">安装过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装后配置"><span class="nav-number">5.</span> <span class="nav-text">安装后配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#添加用户"><span class="nav-number">5.1.</span> <span class="nav-text">添加用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改源"><span class="nav-number">5.2.</span> <span class="nav-text">更改源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装sudo"><span class="nav-number">5.3.</span> <span class="nav-text">安装sudo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改ssh"><span class="nav-number">5.4.</span> <span class="nav-text">修改ssh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装软件"><span class="nav-number">5.5.</span> <span class="nav-text">安装软件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="heart">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Luspock</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://luspock.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://luspock.com/2017/10/28/树莓派3挂载U盘安装Archlinux/';
+          this.page.identifier = '2017/10/28/树莓派3挂载U盘安装Archlinux/';
+          this.page.title = '树莓派3挂载U盘安装Archlinux';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://luspock.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
