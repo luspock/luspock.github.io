@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://luspock.com/about/index.html</loc>
+    
+    <lastmod>2018-12-05T23:13:02.201Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://luspock.com/tags/index.html</loc>
     
     <lastmod>2018-12-03T22:47:29.206Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>https://luspock.com/categories/index.html</loc>
     
     <lastmod>2018-12-03T22:47:29.205Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://luspock.com/about/index.html</loc>
-    
-    <lastmod>2018-12-03T22:47:29.204Z</lastmod>
     
   </url>
   
