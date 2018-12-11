@@ -62,7 +62,7 @@
 
 
 
-  <meta name="keywords" content="树莓派,折腾,">
+  <meta name="keywords" content="驾照,">
 
 
 
@@ -75,21 +75,20 @@
 
 
 
-<meta name="description" content="前言暑假的时候入手了一个树莓派3，配了一个32G的SD 卡。由于正事比较多，在安装系统上拖了很长时间。目前树莓派上面的系统已经能够正常运行，于是在这里整理记录一下安装过程，以对自己和其他人有所帮助。 选择Archlinux Arm自己之前就折腾过一段时间Archlinux，当时在笔记本上安装了Win10和Archlinux双系统。因为平时主要使用Windows，对Arch刚需不大，安装完成之后就很">
-<meta name="keywords" content="树莓派,折腾">
+<meta name="description" content="美国驾照考试和国内一样分为笔试和路考。 准备笔试在AZ笔试有30道题，答对24道即算通过。可以到MVD官网找例题刷一刷，我考之前过了一遍Drvier License Manual, 刷了官网的三道题，还下了刷题软件刷了100道题，考试的时候发现还是官网的题目靠谱，基本都是原题。推荐直接刷MVD官网的原题，如果有时间还是把Driver License Manual过一遍，毕竟这样会了解更全面一点，开">
+<meta name="keywords" content="驾照">
 <meta property="og:type" content="article">
-<meta property="og:title" content="树莓派3挂载U盘安装Archlinux">
-<meta property="og:url" content="https://luspock.com/2017/10/28/树莓派3挂载U盘安装Archlinux/index.html">
+<meta property="og:title" content="AZ考驾照">
+<meta property="og:url" content="https://luspock.com/2018/12/10/AZ考驾照/index.html">
 <meta property="og:site_name" content="参差多态">
-<meta property="og:description" content="前言暑假的时候入手了一个树莓派3，配了一个32G的SD 卡。由于正事比较多，在安装系统上拖了很长时间。目前树莓派上面的系统已经能够正常运行，于是在这里整理记录一下安装过程，以对自己和其他人有所帮助。 选择Archlinux Arm自己之前就折腾过一段时间Archlinux，当时在笔记本上安装了Win10和Archlinux双系统。因为平时主要使用Windows，对Arch刚需不大，安装完成之后就很">
+<meta property="og:description" content="美国驾照考试和国内一样分为笔试和路考。 准备笔试在AZ笔试有30道题，答对24道即算通过。可以到MVD官网找例题刷一刷，我考之前过了一遍Drvier License Manual, 刷了官网的三道题，还下了刷题软件刷了100道题，考试的时候发现还是官网的题目靠谱，基本都是原题。推荐直接刷MVD官网的原题，如果有时间还是把Driver License Manual过一遍，毕竟这样会了解更全面一点，开">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://luspock.com/2017/10/28/树莓派3挂载U盘安装Archlinux/space_df_h.JPG">
-<meta property="og:image" content="https://luspock.com/2017/10/28/树莓派3挂载U盘安装Archlinux/screenfetch.JPG">
-<meta property="og:updated_time" content="2018-12-03T22:47:29.200Z">
+<meta property="og:image" content="https://luspock.com/2018/12/10/AZ考驾照/ReverseAndRouting.jpg">
+<meta property="og:updated_time" content="2018-12-11T02:19:43.804Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="树莓派3挂载U盘安装Archlinux">
-<meta name="twitter:description" content="前言暑假的时候入手了一个树莓派3，配了一个32G的SD 卡。由于正事比较多，在安装系统上拖了很长时间。目前树莓派上面的系统已经能够正常运行，于是在这里整理记录一下安装过程，以对自己和其他人有所帮助。 选择Archlinux Arm自己之前就折腾过一段时间Archlinux，当时在笔记本上安装了Win10和Archlinux双系统。因为平时主要使用Windows，对Arch刚需不大，安装完成之后就很">
-<meta name="twitter:image" content="https://luspock.com/2017/10/28/树莓派3挂载U盘安装Archlinux/space_df_h.JPG">
+<meta name="twitter:title" content="AZ考驾照">
+<meta name="twitter:description" content="美国驾照考试和国内一样分为笔试和路考。 准备笔试在AZ笔试有30道题，答对24道即算通过。可以到MVD官网找例题刷一刷，我考之前过了一遍Drvier License Manual, 刷了官网的三道题，还下了刷题软件刷了100道题，考试的时候发现还是官网的题目靠谱，基本都是原题。推荐直接刷MVD官网的原题，如果有时间还是把Driver License Manual过一遍，毕竟这样会了解更全面一点，开">
+<meta name="twitter:image" content="https://luspock.com/2018/12/10/AZ考驾照/ReverseAndRouting.jpg">
 
 
 
@@ -119,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="https://luspock.com/2017/10/28/树莓派3挂载U盘安装Archlinux/">
+  <link rel="canonical" href="https://luspock.com/2018/12/10/AZ考驾照/">
 
 
 
 
 
-  <title>树莓派3挂载U盘安装Archlinux | 参差多态</title>
+  <title>AZ考驾照 | 参差多态</title>
   
 
 
@@ -271,7 +270,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://luspock.com/2017/10/28/树莓派3挂载U盘安装Archlinux/">
+    <link itemprop="mainEntityOfPage" href="https://luspock.com/2018/12/10/AZ考驾照/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Luspock">
@@ -288,7 +287,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">树莓派3挂载U盘安装Archlinux</h1>
+          <h1 class="post-title" itemprop="name headline">AZ考驾照</h1>
         
 
         <div class="post-meta">
@@ -300,8 +299,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-28T15:58:41-07:00">
-                2017-10-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-10T18:34:38-07:00">
+                2018-12-10
               </time>
             
 
@@ -323,8 +322,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/硬件/" itemprop="url" rel="index">
-                    <span itemprop="name">硬件</span>
+                  <a href="/categories/生活/" itemprop="url" rel="index">
+                    <span itemprop="name">生活</span>
                   </a>
                 </span>
 
@@ -334,8 +333,8 @@
                 
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/硬件/树莓派/" itemprop="url" rel="index">
-                    <span itemprop="name">树莓派</span>
+                  <a href="/categories/生活/美帝见闻/" itemprop="url" rel="index">
+                    <span itemprop="name">美帝见闻</span>
                   </a>
                 </span>
 
@@ -352,8 +351,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/28/树莓派3挂载U盘安装Archlinux/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/10/28/树莓派3挂载U盘安装Archlinux/" itemprop="commentCount"></span>
+                <a href="/2018/12/10/AZ考驾照/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/12/10/AZ考驾照/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -380,7 +379,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  988 字
+                  987 字
                 </span>
               
 
@@ -417,67 +416,16 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>暑假的时候入手了一个树莓派3，配了一个32G的SD 卡。由于正事比较多，在安装系统上拖了很长时间。目前树莓派上面的系统已经能够正常运行，于是在这里整理记录一下安装过程，以对自己和其他人有所帮助。</p>
-<h2 id="选择Archlinux-Arm"><a href="#选择Archlinux-Arm" class="headerlink" title="选择Archlinux Arm"></a>选择Archlinux Arm</h2><p>自己之前就折腾过一段时间Archlinux，当时在笔记本上安装了Win10和Archlinux双系统。因为平时主要使用Windows，对Arch刚需不大，安装完成之后就很少进入Arch。后面由于SSD空间不够就把Archlinux删去了。入手的树莓派刚好可以让我重新接触这个轻量级，简洁的系统。<br><a id="more"></a></p>
-<h2 id="安装准备"><a href="#安装准备" class="headerlink" title="安装准备"></a>安装准备</h2><ul>
-<li>树莓派 </li>
-<li>32G大小SD卡（由于只在上面安装Boot,其实30M+就可以了）</li>
-<li>USB读卡器</li>
-<li>Archlinux ARM安装完成之后会占用600-800M空间，再安装一点软件就要1.5G左右，因此最好准备4G以上的U盘</li>
-</ul>
-<img src="/2017/10/28/树莓派3挂载U盘安装Archlinux/space_df_h.JPG">
-<ul>
-<li>路由器</li>
-</ul>
-<h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><p>之前Raspberry Pi官网上是有Archlinux Arm的镜像文件的，但现在树莓派官方取消支持了。Archlinux Arm还是给出安装的具体过程。</p>
-<p>但是步骤操作起来比较麻烦，我采用的是镜像文件安装的方法，ta人维护的镜像文件可以见这里<a href="https://sourceforge.net/projects/archlinux-rpi2/" target="_blank" rel="noopener">image</a>，请谨慎使用。</p>
+        <p>美国驾照考试和国内一样分为笔试和路考。</p>
+<h2 id="准备笔试"><a href="#准备笔试" class="headerlink" title="准备笔试"></a>准备笔试</h2><p>在AZ笔试有30道题，答对24道即算通过。可以到<a href="https://azdot.gov/motor-vehicles/driver-services" target="_blank" rel="noopener">MVD</a>官网找例题刷一刷，我考之前过了一遍<a href="https://azdot.gov/motor-vehicles/driver-services/Tests_Manuals_and_Driving_Schools" target="_blank" rel="noopener">Drvier License Manual</a>, 刷了官网的<a href="https://azdot.gov/motor-vehicles/driver-services/Tests_Manuals_and_Driving_Schools/practice-tests" target="_blank" rel="noopener">三道题</a>，还下了刷题软件刷了100道题，考试的时候发现还是官网的题目靠谱，基本都是原题。推荐直接刷MVD官网的原题，如果有时间还是把Driver License Manual过一遍，毕竟这样会了解更全面一点，开车的时候头脑会更加清楚。<br><a id="more"></a></p>
+<h2 id="笔试"><a href="#笔试" class="headerlink" title="笔试"></a>笔试</h2><p>考permit（似乎也可以直接申请standard driver license，可以省7刀permit的钱）我是到Tempe的MVD进行考试，进去先拍照，然后排队注册填表。这一步可以提前在<a href="https://apps.azdot.gov/mvd/Application/ApplicationForm.aspx" target="_blank" rel="noopener">网上预填信息</a>，然后把条形码打印出来，这样可以省一些在那填表的时间。交完费之后检测视力。然后就可以到test area上机考试了。考试easy，小心一点慢一点也只需5-10分钟。<br>考完出来，会有工作人员给你确认，然后给你临时permit单子，正式的会在一周以后寄到住址。之后就在门口的机器上预约路考，也可以<a href="https://servicearizona.com/webapp/moa/identifyUser/RoadTest" target="_blank" rel="noopener">网上预约</a>。我是约在Mesa的考点，因为听说Mesa会简单一些，Tempe的路考考侧方停车，而Mesa的考倒车入库。</p>
+<h2 id="路考"><a href="#路考" class="headerlink" title="路考"></a>路考</h2><p>改日中午11点在朋友（有车大佬）的陪同下，开车出发去位于Mesa的MVD （4123 E Valley Auto Dr, Mesa, AZ 85206）。由于离考点还有一定空余时间，我们到了之后没有先去MVD里面报道，而是顺着停车场到了考倒车入库的地方。我们发现前面刚好有一辆红色的车考完倒车入库，去进行road test，于是趁机尾行其后，提前跑一跑考试路线。前面红车驾驶员在考的时候有很多失误（左转弯绿灯不走、到十字路口强行换道），这都被我们尽收眼底，也作为反面案例记在心里。等我们转完一圈回到MVD，遇到红车驾驶员正愁容满面和考官在确认信息。原来驾驶员是一印度老哥，看来结果并不乐观呀。我后面又跑了两圈之后回到MVD注册，拍照并交了10刀之后，等着考官来领取考试表。监考我的是一位和蔼的女考官，刚上来就问我之前在国内有没有开过车，我说很少。后来才知道跟我一起来考的室友回答她开了5年，于是他的road test直接免考了。。。（违规的！考官后面嘱咐他不要告诉别人，哈哈）<br>在我进行完倒车入库后，考官就上我的车进行路考了。考官在我开出停车场之前就嘱咐我不要开太慢，免得扣分，并且路上给我指示，告诉我一些开车技巧，给我感觉是都不是在考试。<br><img src="ReverseAndRouting.jpg" alt="倒车入库示意图和路考路线图"><br><strong>Tips</strong>（不保证路线完全一样）:</p>
 <ol>
-<li><p>用Win32DiskImager 将镜像写入SD 和U盘（先格式化成FAT格式）。</p>
-</li>
-<li><p>将SD卡和U盘同时插到树莓派上，开机。将树莓派和电脑接到同一个路由器下，方便获得IP地址。用IP扫描器或者登陆路由器管理界面查看树莓派的IP地址（alarmpi）。ssh登陆树莓派，用户名alarm，密码alarm。su切换到root，密码root。</p>
-</li>
-<li><p>lsblk -l 查看U盘编号，我这里的情况是sda</p>
-</li>
-<li><p>由于写入镜像的时候，系统只占用一部分空间，因此需要扩展分区。</p>
-<p><code>fdisk /dev/sda</code></p>
-<p>按<code>p</code>显示分区信息，记住/sda2开始的位置</p>
-<p>按<code>d</code>删掉第二个分区</p>
-<p>按<code>n</code>然后<code>p</code>新建主分区，正常情况下新分区开始的位置是刚才记住的/sda2开始位置，按两次<code>enter</code>完成分区创建</p>
-<p>按<code>p</code>确认第二个分区使用了剩下的所有空间</p>
-<p>按<code>w</code>将新的分区信息保存，如果提示是否覆盖xxx, 选择no!否则会丢失sda2上的image数据。</p>
-</li>
-<li><p>修改SD卡的/boot中cmdline.txt</p>
-<p><code>root=/dev/mmcblk0p2</code> 改为 <code>root=/dev/sda2</code></p>
-</li>
-<li><p><code>reboot</code>重启过后正常情况下进入的是U盘里面的系统，用户名alarm,密码alarm。su切换到root，密码root。</p>
-</li>
-<li><p><code>df -h</code>查看挂载信息，重新调整大小后，发现sda2大小依然没有变化</p>
-<p><code>sudo resize2fs /dev/sda2</code> 更新系统，如果可能还需reboot。</p>
-</li>
+<li>第一个左转弯后，进入三车道的最左侧。由于下一个路口会右转弯，做好两次往右变道的准备。变道时车速不要慢的太多，免得后车撞上，看右后方无车后把握时机变道。记得打右转向灯；</li>
+<li>右转向后有一个学校，限速35mph，开到35mph，别太慢；</li>
+<li>最后回来有一个路口要直行，注意车道，别像印度老哥一样走到左转车道上面去了。</li>
 </ol>
-<h2 id="安装后配置"><a href="#安装后配置" class="headerlink" title="安装后配置"></a>安装后配置</h2><h3 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h3><p><code>su</code>切换到root，<code>passwd</code>更新root密码</p>
-<p><code>useradd -m -g wheel -s /bin/bash username</code></p>
-<p><code>passwd</code>设置新用户密码</p>
-<p>重新用新的用户登陆后再切换到root</p>
-<p><code>userdel -r alarm</code>删除默认的alarm用户</p>
-<h3 id="更改源"><a href="#更改源" class="headerlink" title="更改源"></a>更改源</h3><p><code>nano /etc/pacman.d/mirrorlist</code></p>
-<p>添加清华tuna源<code>Server = http://mirrors.tuna.tsinghua.edu.cn/archlinuxarm/$arch/$repo</code></p>
-<p>添加USTC源<code>Server = http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch</code></p>
-<p>###更新系统</p>
-<p><code>pacman-key init</code></p>
-<p><code>pacman -Syu</code>更新系统（时间较长）</p>
-<p>如果提示<code>/boot/overlays/audioinjector-addons.dtbo exists in filesystem</code>，<code>rm</code>相应文件，然后再次<code>pacman -Syu</code>即可</p>
-<h3 id="安装sudo"><a href="#安装sudo" class="headerlink" title="安装sudo"></a>安装sudo</h3><p><code>pacman -S sudo</code></p>
-<p>root身份运行<code>visudo</code>，将<code>%wheel ALL=(ALL) ALL</code>前面的#注释去掉</p>
-<h3 id="修改ssh"><a href="#修改ssh" class="headerlink" title="修改ssh"></a>修改ssh</h3><p><code>nano /etc/ssh/sshd_config</code></p>
-<p>修改port端口<code>Port xxxx</code></p>
-<p>禁止root登陆<code>PermitRootLogin no</code></p>
-<p><code>systemctl reload sshd</code></p>
-<p>先不要断开目前的连接，再开一个新的连接，用更新过后的配置测试通过再断开当前连接为好。</p>
-<h3 id="安装软件"><a href="#安装软件" class="headerlink" title="安装软件"></a>安装软件</h3><p><code>sudo pacman -S vim git tmux base-devel screenfetch</code></p>
-<p><code>sudo pacman -S python3 python-pip</code></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><img src="/2017/10/28/树莓派3挂载U盘安装Archlinux/screenfetch.JPG">
-<p>介绍了在树莓派上挂载U盘安装archlinux过程以及简要配置，之后会说明如何将树莓派配置成一个wifi热点。</p>
+<p>整个路不超过10分钟。回到出发点，考官就告诉我通过了，后面就可以去室内排队（Completed Tests）要驾照啦。工作人员会当场发一个临时的驾照（一页纸），正式的会邮寄到住址。</p>
 
       
     </div>
@@ -509,7 +457,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://luspock.com/2017/10/28/树莓派3挂载U盘安装Archlinux/" title="树莓派3挂载U盘安装Archlinux">https://luspock.com/2017/10/28/树莓派3挂载U盘安装Archlinux/</a>
+    <a href="https://luspock.com/2018/12/10/AZ考驾照/" title="AZ考驾照">https://luspock.com/2018/12/10/AZ考驾照/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -524,9 +472,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/树莓派/" rel="tag"><i class="fa fa-tag"></i> 树莓派</a>
-          
-            <a href="/tags/折腾/" rel="tag"><i class="fa fa-tag"></i> 折腾</a>
+            <a href="/tags/驾照/" rel="tag"><i class="fa fa-tag"></i> 驾照</a>
           
         </div>
       
@@ -539,8 +485,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/30/第一篇文章/" rel="next" title="第一篇文章">
-                <i class="fa fa-chevron-left"></i> 第一篇文章
+              <a href="/2017/10/29/树莓派-Archlinux-Wifi-ap/" rel="next" title="树莓派-Archlinux-Wifi-ap">
+                <i class="fa fa-chevron-left"></i> 树莓派-Archlinux-Wifi-ap
               </a>
             
           </div>
@@ -548,10 +494,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/29/树莓派-Archlinux-Wifi-ap/" rel="prev" title="树莓派-Archlinux-Wifi-ap">
-                树莓派-Archlinux-Wifi-ap <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -718,7 +660,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择Archlinux-Arm"><span class="nav-number">2.</span> <span class="nav-text">选择Archlinux Arm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装准备"><span class="nav-number">3.</span> <span class="nav-text">安装准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装过程"><span class="nav-number">4.</span> <span class="nav-text">安装过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装后配置"><span class="nav-number">5.</span> <span class="nav-text">安装后配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#添加用户"><span class="nav-number">5.1.</span> <span class="nav-text">添加用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改源"><span class="nav-number">5.2.</span> <span class="nav-text">更改源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装sudo"><span class="nav-number">5.3.</span> <span class="nav-text">安装sudo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改ssh"><span class="nav-number">5.4.</span> <span class="nav-text">修改ssh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装软件"><span class="nav-number">5.5.</span> <span class="nav-text">安装软件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备笔试"><span class="nav-number">1.</span> <span class="nav-text">准备笔试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#笔试"><span class="nav-number">2.</span> <span class="nav-text">笔试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#路考"><span class="nav-number">3.</span> <span class="nav-text">路考</span></a></li></ol></div>
             
 
           </div>
@@ -910,9 +852,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://luspock.com/2017/10/28/树莓派3挂载U盘安装Archlinux/';
-          this.page.identifier = '2017/10/28/树莓派3挂载U盘安装Archlinux/';
-          this.page.title = '树莓派3挂载U盘安装Archlinux';
+          this.page.url = 'https://luspock.com/2018/12/10/AZ考驾照/';
+          this.page.identifier = '2018/12/10/AZ考驾照/';
+          this.page.title = 'AZ考驾照';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://luspock.disqus.com/embed.js';
