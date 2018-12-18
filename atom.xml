@@ -5,9 +5,9 @@
   <subtitle>要精彩 也要踏实</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://luspock.com/"/>
+  <link href="https://blog.luspock.com/"/>
   <updated>2018-12-11T02:19:43.804Z</updated>
-  <id>https://luspock.com/</id>
+  <id>https://blog.luspock.com/</id>
   
   <author>
     <name>Luspock</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>AZ考驾照</title>
-    <link href="https://luspock.com/2018/12/10/AZ%E8%80%83%E9%A9%BE%E7%85%A7/"/>
-    <id>https://luspock.com/2018/12/10/AZ考驾照/</id>
+    <link href="https://blog.luspock.com/2018/12/10/AZ%E8%80%83%E9%A9%BE%E7%85%A7/"/>
+    <id>https://blog.luspock.com/2018/12/10/AZ考驾照/</id>
     <published>2018-12-11T01:34:38.000Z</published>
     <updated>2018-12-11T02:19:43.804Z</updated>
     
@@ -32,19 +32,19 @@
     
     </summary>
     
-      <category term="生活" scheme="https://luspock.com/categories/%E7%94%9F%E6%B4%BB/"/>
+      <category term="生活" scheme="https://blog.luspock.com/categories/%E7%94%9F%E6%B4%BB/"/>
     
-      <category term="美帝见闻" scheme="https://luspock.com/categories/%E7%94%9F%E6%B4%BB/%E7%BE%8E%E5%B8%9D%E8%A7%81%E9%97%BB/"/>
+      <category term="美帝见闻" scheme="https://blog.luspock.com/categories/%E7%94%9F%E6%B4%BB/%E7%BE%8E%E5%B8%9D%E8%A7%81%E9%97%BB/"/>
     
     
-      <category term="驾照" scheme="https://luspock.com/tags/%E9%A9%BE%E7%85%A7/"/>
+      <category term="驾照" scheme="https://blog.luspock.com/tags/%E9%A9%BE%E7%85%A7/"/>
     
   </entry>
   
   <entry>
     <title>树莓派-Archlinux-Wifi-ap</title>
-    <link href="https://luspock.com/2017/10/29/%E6%A0%91%E8%8E%93%E6%B4%BE-Archlinux-Wifi-ap/"/>
-    <id>https://luspock.com/2017/10/29/树莓派-Archlinux-Wifi-ap/</id>
+    <link href="https://blog.luspock.com/2017/10/29/%E6%A0%91%E8%8E%93%E6%B4%BE-Archlinux-Wifi-ap/"/>
+    <id>https://blog.luspock.com/2017/10/29/树莓派-Archlinux-Wifi-ap/</id>
     <published>2017-10-29T12:31:48.000Z</published>
     <updated>2018-12-03T22:47:29.196Z</updated>
     
@@ -56,21 +56,21 @@
     
     </summary>
     
-      <category term="硬件" scheme="https://luspock.com/categories/%E7%A1%AC%E4%BB%B6/"/>
+      <category term="硬件" scheme="https://blog.luspock.com/categories/%E7%A1%AC%E4%BB%B6/"/>
     
-      <category term="树莓派" scheme="https://luspock.com/categories/%E7%A1%AC%E4%BB%B6/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
+      <category term="树莓派" scheme="https://blog.luspock.com/categories/%E7%A1%AC%E4%BB%B6/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
     
     
-      <category term="树莓派" scheme="https://luspock.com/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
+      <category term="折腾" scheme="https://blog.luspock.com/tags/%E6%8A%98%E8%85%BE/"/>
     
-      <category term="折腾" scheme="https://luspock.com/tags/%E6%8A%98%E8%85%BE/"/>
+      <category term="树莓派" scheme="https://blog.luspock.com/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
     
   </entry>
   
   <entry>
     <title>树莓派3挂载U盘安装Archlinux</title>
-    <link href="https://luspock.com/2017/10/28/%E6%A0%91%E8%8E%93%E6%B4%BE3%E6%8C%82%E8%BD%BDU%E7%9B%98%E5%AE%89%E8%A3%85Archlinux/"/>
-    <id>https://luspock.com/2017/10/28/树莓派3挂载U盘安装Archlinux/</id>
+    <link href="https://blog.luspock.com/2017/10/28/%E6%A0%91%E8%8E%93%E6%B4%BE3%E6%8C%82%E8%BD%BDU%E7%9B%98%E5%AE%89%E8%A3%85Archlinux/"/>
+    <id>https://blog.luspock.com/2017/10/28/树莓派3挂载U盘安装Archlinux/</id>
     <published>2017-10-28T22:58:41.000Z</published>
     <updated>2018-12-03T22:47:29.200Z</updated>
     
@@ -83,21 +83,21 @@
     
     </summary>
     
-      <category term="硬件" scheme="https://luspock.com/categories/%E7%A1%AC%E4%BB%B6/"/>
+      <category term="硬件" scheme="https://blog.luspock.com/categories/%E7%A1%AC%E4%BB%B6/"/>
     
-      <category term="树莓派" scheme="https://luspock.com/categories/%E7%A1%AC%E4%BB%B6/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
+      <category term="树莓派" scheme="https://blog.luspock.com/categories/%E7%A1%AC%E4%BB%B6/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
     
     
-      <category term="树莓派" scheme="https://luspock.com/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
+      <category term="折腾" scheme="https://blog.luspock.com/tags/%E6%8A%98%E8%85%BE/"/>
     
-      <category term="折腾" scheme="https://luspock.com/tags/%E6%8A%98%E8%85%BE/"/>
+      <category term="树莓派" scheme="https://blog.luspock.com/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
     
   </entry>
   
   <entry>
     <title>第一篇文章</title>
-    <link href="https://luspock.com/2017/07/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
-    <id>https://luspock.com/2017/07/30/第一篇文章/</id>
+    <link href="https://blog.luspock.com/2017/07/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
+    <id>https://blog.luspock.com/2017/07/30/第一篇文章/</id>
     <published>2017-07-30T16:57:41.000Z</published>
     <updated>2018-12-03T22:47:29.203Z</updated>
     
@@ -113,7 +113,7 @@
     
     </summary>
     
-      <category term="日常" scheme="https://luspock.com/categories/%E6%97%A5%E5%B8%B8/"/>
+      <category term="日常" scheme="https://blog.luspock.com/categories/%E6%97%A5%E5%B8%B8/"/>
     
     
   </entry>
