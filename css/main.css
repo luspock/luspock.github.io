@@ -1749,6 +1749,9 @@ pre .javascript .function {
   max-width: 120px;
   height: auto;
   border: 1px solid #eee;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
 }
 .site-author-name {
   margin: 0;
@@ -1830,7 +1833,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #4d69ff;
+  background: #0550ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3129,6 +3132,22 @@ pre .javascript .function {
 }
 .with-love {
   color: #ff71a8;
+}
+@media screen and (min-width: 500px) {
+  body {
+    background-image: url("/images/background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 50% 50%;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -ms-background-size: cover;
+  }
+  #footer > div > div {
+    color: #515a5a;
+  }
 }
 @-moz-keyframes heartAnimate {
   0%, 100% {
