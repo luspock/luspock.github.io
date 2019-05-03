@@ -30,3 +30,4 @@ type: "about"
 - 2017年9月10日，增加Blueprint
 - 2018年11月29日， 迁移到Github Pages, 采用Hexo，添加Disqus评论系统
 - 2019年1月18日，部署自己的图床[LusPic](https://github.com/luspock/LusPic)，大的图片可以从github转到自己的服务器上
+- 2019年5月3日，修改博客样式
